@@ -35,9 +35,17 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
    cd python && \
    pip3 install --upgrade pip && \
    pip3 install -e . && \
-   apt-get clean
+   apt-get clean && \
 
 ENV PYTHONPATH=/mxnet/python
+
+# 3. ------------ Build and install the nccl  ------------------
+   
+   cd / && \
+   git clone https://github.com/NVIDIA/nccl.git && \
+   cd /nccl  && \
+   make CUDA_HOME=/usr/local/cuda-9.0 test && \
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/nccl/build/lib
 
 #     ------------------------ END --------------------------------
 
