@@ -1,5 +1,6 @@
 # Mxnet Dockerfile for ppc64le
 以下のDockerhubにおけるイメージのDockerfileを公開しております。 ppc64leアーキテクチャにおけるDockerコンテナ作成時にご活用ください。
+(ただいま、Dockerhubへのアップロード準備中です。)
 
 ```
 # ls
