@@ -28,20 +28,20 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     git clone --recursive -b 1.1.0 https://github.com/apache/incubator-mxnet.git mxnet && \
     cd mxnet && \
     make -j $(nproc) USE_OPENCV=1 USE_BLAS=openblas USE_CUDA=1 USE_CUDA_PATH=/usr/local/cuda-9.1 USE_CUDNN=1 && \
-    rm -r build && \
+    rm -r build 
     
 # 2. ------------ Build the MXNet Python binding ------------------ 
    
-   cd python && \
+RUN cd python && \
    pip3 install --upgrade pip && \
    pip3 install -e . && \
-   apt-get clean && \
+   apt-get clean 
 
 ENV PYTHONPATH=/mxnet/python
 
 # 3. ------------ Build and install the nccl  ------------------
    
-   cd / && \
+RUN cd / && \
    git clone https://github.com/NVIDIA/nccl.git && \
    cd /nccl  && \
    make CUDA_HOME=/usr/local/cuda-9.1 test 
